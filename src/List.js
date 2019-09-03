@@ -1,19 +1,37 @@
-import React from 'react';
-import ListItem from './ListItem';
+import React from "react";
+import ListItem from "./ListItem";
 
-const List = ({ items, incrementItem, decrementItem }) => {
-  const itemElements = items.map((item, i) => (
-    <ListItem
-      key={i}
-      item={item}
-      onIncrementClick={() => incrementItem(i)}
-      onDecrementClick={() => decrementItem(i)}
-    />)
+const List = ({
+  items,
+  incrementItem,
+  decrementItem,
+  currentlySelectedFilter
+}) => {
+  const toFilter = currentlySelectedFilter != "all";
+  console.log(toFilter);
+  const itemElements = items.map((item, i) =>
+    toFilter ? (
+      item.type == currentlySelectedFilter ? (
+        <ListItem
+          key={i}
+          item={item}
+          onIncrementClick={() => incrementItem(i)}
+          onDecrementClick={() => decrementItem(i)}
+        />
+      ) : null
+    ) : (
+      <ListItem
+        key={i}
+        item={item}
+        onIncrementClick={() => incrementItem(i)}
+        onDecrementClick={() => decrementItem(i)}
+      />
+    )
   );
 
   return (
     <ul id="shoppingList" className="shoppinglist">
-      { itemElements }
+      {itemElements}
     </ul>
   );
 };

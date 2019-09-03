@@ -1,8 +1,12 @@
 import React from "react";
 
 class FilterItem extends React.Component {
+  handleFilterclick = () => {};
+  constructor(props) {
+    super(props);
+    //console.log(this.props.filter);
+  }
   componentDidMount = () => {
-    console.log(this.props.filters);
     this.setState({
       filter: this.props.filter,
       id: this.props.id,
@@ -18,12 +22,11 @@ class FilterItem extends React.Component {
           name="category"
           value={this.props.filter.value}
           id={this.props.id}
-          defaultChecked
+          checked={this.props.checked}
         />
+
         <label
-          onClick={() =>
-            this.state.handleFilterSelected(this.props.filter.value)
-          }
+          onClick={() => this.props.handleFilterClick(this.props.filter.value)}
           htmlFor="filter0"
         >
           {this.props.filter.name}

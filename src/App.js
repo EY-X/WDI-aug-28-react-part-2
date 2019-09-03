@@ -4,6 +4,11 @@ import Filters from "./Filters";
 import List from "./List";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleFilterClick = this.handleFilterClick.bind(this);
+  }
+
   filters = [
     { name: "All", value: "all" },
     { name: "Meat", value: "meat" },
@@ -71,12 +76,15 @@ class App extends Component {
         <Form addItem={this.addItem} />
         <Filters
           filters={this.filters}
-          onFilterCLick={this.handleFilterClick}
+          handleFilterClick={this.handleFilterClick}
+          currentlySelectedFilter={this.state.type}
         />
+
         <List
           items={this.state.items}
           incrementItem={this.incrementItemQuantity}
           decrementItem={this.decrementItemQuantity}
+          currentlySelectedFilter={this.state.type}
         />
       </main>
     );

@@ -5,18 +5,16 @@ class Filters extends React.Component {
   handleFilterClick = () => {};
   constructor(props) {
     super(props);
-
-    this.handleFilterClick = this.handleFilterClick.bind(this);
   }
 
   componentDidMount = () => {
-    console.log(this.props.filters);
     this.setState({
       filters: this.props.filters
     });
   };
 
   render() {
+    //console.log("logx:" + this.props.handleFilterClick);
     return (
       <section id="filterCategories">
               
@@ -26,7 +24,8 @@ class Filters extends React.Component {
               key={i}
               id={i}
               filter={filter}
-              // handleFilterSelected={handleFilterClick}
+              handleFilterClick={this.props.handleFilterClick}
+              checked={filter.value == this.props.currentlySelectedFilter}
             />
           ))}
         </ul>
