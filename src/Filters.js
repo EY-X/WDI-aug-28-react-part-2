@@ -1,6 +1,5 @@
 import React from "react";
 import FilterItem from "./FilterItem";
-
 class Filters extends React.Component {
   handleFilterClick = () => {};
   constructor(props) {

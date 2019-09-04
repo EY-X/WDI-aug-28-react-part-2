@@ -14,7 +14,7 @@ class App extends Component {
     { name: "Meat", value: "meat" },
     { name: "Produce", value: "prod" },
     { name: "Dairy", value: "dairy" },
-    { name: "Bakery", value: "bakery" }
+    { name: "Other", value: "other" }
   ];
 
   initialItems = [
@@ -34,7 +34,13 @@ class App extends Component {
   };
 
   addItem = itemName => {
-    const item = { name: itemName, type: "meat", quantity: 1 };
+    // Lets find the type of itemName
+    let type = "other";
+    this.initialItems.map((item, index) => {
+      if (item.name == itemName) type = item.type;
+    });
+
+    const item = { name: itemName, type: type, quantity: 1 };
     const newItems = this.state.items.concat(item);
     this.setState({ items: newItems });
   };
